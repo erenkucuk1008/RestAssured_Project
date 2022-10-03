@@ -9,9 +9,9 @@ public abstract class SpartanNoAuthBaseTest {
     //BeforeAll ve AfterAll static methodla yaziyoruz
     @BeforeAll
     public static void init(){
-        //this will set the part of URL at RestAssured
-        RestAssured.baseURI = "http://3.91.182.164:8000";
-        //RestAssured.port = 8000 ;
+
+        String spartanURL = ConfigurationReader.getProperty("spartanURL");
+        RestAssured.baseURI = spartanURL;
         RestAssured.basePath = "/api";
     }
 
