@@ -58,7 +58,7 @@ public class RestAssured_Intro {
 
         //save the response and print out whole response
         Response response =
-                get("http://3.91.182.164:8000/api/spartans/16")
+                        get("http://3.91.182.164:8000/api/spartans/16")
                         .prettyPeek();
 
         assertThat(response.statusCode(), is(200));
