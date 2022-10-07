@@ -20,24 +20,49 @@ public class SpartanTest_PathVariableQueryParam extends SpartanNoAuthBaseTest{
         // I want to provide 16 as path variable\parameter
         // I want to provide accept header
 
-        given()
-                .header("Accept", "application/json")
-                .pathParam("spartan_id", 16).
-        when()
-                .get("/spartans/{spartan_id}")
-                .prettyPrint()
+        Response r1 =
+                given()
+                        .header("Accept", "application/json")
+                        .pathParam("spartan_id", 16).
+                when()
+                        .get("/spartans/{spartan_id}")
+                        .prettyPeek()
         ;
 
         //this is alternative way
-        given()
-                //.header("Accept", "application/json") SAME
-                .accept("application/json").
-        when()
-                //alternative.. path variable and value directly in get method
-                .get("/spartans/{spartan_id}", 16)
-                .prettyPrint()
+        Response r2 =
+                given()
+                        //.header("Accept", "application/json") SAME
+                        .accept("application/json").
+                when()
+                        //alternative.. path variable and value directly in get method
+                        .get("/spartans/{spartan_id}", 16)
+                        .prettyPeek()
         ;
 
-        get("/spartans/16").prettyPrint();
+        System.out.println("r1.statusCode() = " + r1.statusCode());
+        System.out.println("r2.statusCode() = " + r2.statusCode());
+
+        assertThat(r1.statusCode(),is(r2.statusCode()));
+    }
+
+    @DisplayName("Logging the request")
+    @Test
+    public void getOneSpartanWithLog(){
+
+        Response response =
+                given()
+                    .log().all()
+                    .accept("application/json")
+                    .pathParam("id",16).
+                when()
+                    .get("/spartans/{id}")
+                    .prettyPeek()
+                ;
+
+        assertThat(response.statusCode(), equalTo(200));
+        assertThat(response.contentType(), is("application/json"));
+        //assertThat(response.header("Content-TYpe"), is("application/json"));
+        assertThat(response.path("name"), is("Sinclair"));
     }
 }
