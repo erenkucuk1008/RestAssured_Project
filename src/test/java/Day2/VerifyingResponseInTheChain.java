@@ -22,7 +22,12 @@ public class VerifyingResponseInTheChain extends SpartanNoAuthBaseTest {
         when()
                 .get("/spartans/{id}").
         then()
-                .log().all()
+                .log().all() // butun herseyi gosterir
+                //.log().body() ekranda sadece body gosterir
+                //.log().ifValidationFails() sadece test fail oldugunda ekrana yazdirilir
+                //.log.status() ekranda sadece 200 gosterir
+                //.log().headers() ekranda sadece header ler gosterilir
+                //.log().ifError()
                 .statusCode(200)
                 .header("Content-Type", is("application/json"))
                 .contentType("application/json")
@@ -32,5 +37,30 @@ public class VerifyingResponseInTheChain extends SpartanNoAuthBaseTest {
                 .body("phone", equalTo(9714460354L))
         ;
 
+    }
+
+    @DisplayName("All Different Logging Options")
+    @Test
+    public void testOneSpartanLogRequestAndResponse(){
+
+        given()
+             .log().all()
+                //.log().uri() just for the request URL
+                //.log().body() for logging request body
+                //.log().params() logging only request parameters
+                //.log().method() just log the http method
+                //.log().ifValidationFails() only log the request if validation in
+             .pathParam("id", 16).
+        when()
+             .get("/spartans/{id}").
+        then()
+             .log().all() // butun herseyi gosterir
+                //.log().body() ekranda sadece body gosterir
+                //.log().ifValidationFails() sadece test fail oldugunda ekrana yazdirilir
+                //.log.status() ekranda sadece 200 gosterir
+                //.log().headers() ekranda sadece header ler gosterilir
+                //.log().ifError()
+                .statusCode(200)
+             ;
     }
 }
