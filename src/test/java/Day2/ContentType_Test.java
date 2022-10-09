@@ -25,4 +25,30 @@ public class ContentType_Test extends SpartanNoAuthBaseTest {
                 .body( is("Hello from Sparta"))
         ;
     }
+
+    @DisplayName("GET /spartans in json")
+    @Test
+    public void testSpartansJsonContentType(){
+
+        given()
+                .accept(ContentType.JSON).// asking JSON result from the server
+        when()
+                .get("/spartans").
+        then()
+                .contentType(ContentType.JSON)// verifying the response body in JSON
+                ;
+    }
+
+    @DisplayName("GET /spartans in XML")
+    @Test
+    public void testSpartansXmlContentType(){
+
+        given()
+                .accept(ContentType.XML).
+        when()
+                .get("/spartans").
+        then()
+                .contentType(ContentType.XML)
+                ;
+    }
 }
