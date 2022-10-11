@@ -23,18 +23,25 @@ public class SearchMovie_OmdbApi {
                         .queryParam("s", "Superman")
                         .queryParam("type","series")
                         .log().all().
-                        when()
+                when()
                         .get("http://www.omdbapi.com")
                         .prettyPeek()
                         .jsonPath()
-                ;
+        ;
 
         List<String> allTitle = jp.getList("Search.Title", String.class);
         List<String> allYears = jp.getList("Search.Year", String.class);
+        List<String> allImdbID = jp.getList("Search.imdbID", String.class);
         System.out.println("allTitle = " + allTitle);
         System.out.println("allYears = " + allYears);
+        System.out.println("allImdbID = " + allImdbID);
+        System.out.println("jp.getString(\"Search.Title[2]\") = " + jp.getString("Search.Title[2]"));
+        System.out.println("jp.getString(\"Search.Year[2]\") = " + jp.getString("Search.Year[2]"));
+        System.out.println("jp.getString(\"Search.imdbID[2]\") = " + jp.getString("Search.imdbID[2]"));
 
         assertThat(allTitle, hasSize(10));
         assertThat(allTitle, hasItem("Superman"));
+
+        System.out.println("jp.getString(\"totalResults\") = " + jp.getString("totalResults"));
     }
 }
