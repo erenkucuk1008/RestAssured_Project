@@ -1,4 +1,4 @@
-package Day2;
+package Day3;
 
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.DisplayName;

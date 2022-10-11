@@ -60,7 +60,7 @@ public class VerifyingResponseInTheChain extends SpartanNoAuthBaseTest {
                 //.log.status() ekranda sadece 200 gosterir
                 //.log().headers() ekranda sadece header ler gosterilir
                 //.log().ifError()
-                .statusCode(200)
+                .statusCode(is(200))
              ;
     }
 }
