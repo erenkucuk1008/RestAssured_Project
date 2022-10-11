@@ -61,9 +61,9 @@ public class SpartanPostingData_Test extends SpartanNoAuthBaseTest{
 
         /* singleSpartan.json with below content
             {
-                "name" : "Eren",
-                "gender" : "Male",
-                "phone" : 8083494130
+                "name" : "Arzum",
+                "gender" : "Female",
+                "phone" : 8083511830
             }
          */
 
