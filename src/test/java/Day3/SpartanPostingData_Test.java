@@ -37,6 +37,7 @@ public class SpartanPostingData_Test extends SpartanNoAuthBaseTest{
                 "                \"gender\" : \"Male\",\n" +
                 "                \"phone\" : 8083494130\n" +
                 "            }";
+
         given()
                 .log().all()
 //                .header("Content-Type", "application/json")
