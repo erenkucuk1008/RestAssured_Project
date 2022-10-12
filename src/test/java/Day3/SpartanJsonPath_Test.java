@@ -54,11 +54,11 @@ public class SpartanJsonPath_Test extends SpartanNoAuthBaseTest{
     @Test
     public void testGetAllSpartans(){
 
-        Response response = get("/spartans");
-        JsonPath jp = response.jsonPath();
+        //Response response = get("/spartans");
+        //JsonPath jp = response.jsonPath();
 // 2 sini birlestirdik...
 
-        //JsonPath jp = get("/spartans").jsonPath();
+        JsonPath jp = get("/spartans").jsonPath();
         // print first id in the json array response
         System.out.println("jp.getInt(\"id[0]\") = " + jp.getInt("id[0]"));
 
