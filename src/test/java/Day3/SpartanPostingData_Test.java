@@ -10,6 +10,7 @@ import org.junit.jupiter.api.*;
 import test_util.SpartanNoAuthBaseTest;
 
 import java.io.File;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,5 +81,49 @@ public class SpartanPostingData_Test extends SpartanNoAuthBaseTest{
                 .log().all()
                 .statusCode(201)
                 ;
+    }
+
+    @DisplayName("POST /spartans with Map Object")
+    @Test
+    public void testPostDataWithMapObjectAsBody(){
+
+        /*
+            {
+                "name" : "Abigale",
+                "gender" : "Female",
+                "phone" : 1800233323
+            }
+         */
+        Map<String, Object> bodyMap = new LinkedHashMap<>();
+        bodyMap.put("name", "Abigale");
+        bodyMap.put("gender", "Female");
+        bodyMap.put("phone", 1800233323L);
+
+        System.out.println("bodyMap = " + bodyMap);
+
+        given()
+                .log().all()
+                .contentType(ContentType.JSON)
+                .body(bodyMap).
+        when()
+                .post("/spartans").
+        then()
+                .log().all()
+                .statusCode(201)
+        ;
+    }
+
+    @DisplayName("POST /spartans with POJO")
+    @Test
+    public void testPostDataWithPOJOAsBody(){
+
+        //Spartan sp = new Spartan("Abigale","Female","1800233323L") ;
+        /*
+            {
+                "name" : "Abigale",
+                "gender" : "Female",
+                "phone" : 1800233323
+            }
+         */
     }
 }
