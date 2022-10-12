@@ -2,6 +2,7 @@ package Day3;
 
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
+import pojo.Spartan;
 import test_util.BreakingBadBaseTest;
 import test_util.SpartanNoAuthBaseTest;
 import io.restassured.RestAssured;
@@ -117,7 +118,7 @@ public class SpartanPostingData_Test extends SpartanNoAuthBaseTest{
     @Test
     public void testPostDataWithPOJOAsBody(){
 
-        //Spartan sp = new Spartan("Abigale","Female","1800233323L") ;
+        Spartan sp = new Spartan("Abigale","Female",1800233323L) ;
         /*
             {
                 "name" : "Abigale",
@@ -125,5 +126,17 @@ public class SpartanPostingData_Test extends SpartanNoAuthBaseTest{
                 "phone" : 1800233323
             }
          */
+        System.out.println("sp = " + sp);
+
+        given()
+                .log().all()
+                .contentType(ContentType.JSON)
+                .body(sp).
+        when()
+                .post("/spartans").
+        then()
+                .log().all()
+                .statusCode(201)
+        ;
     }
 }
